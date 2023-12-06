@@ -1,8 +1,8 @@
-const fs = require('fs');
-const fsp = require('fs/promises');
+const fs = require("fs");
+const fsp = require("fs/promises");
 class Utils {
-  static getInputData = async inputFile => {
-    const inputData = await fs.readFileSync(inputFile, 'utf8', async function (err, data) {
+  static getInputData = async (inputFile) => {
+    const inputData = await fs.readFileSync(inputFile, "utf8", async function (err, data) {
       if (err) {
         return console.log(err);
       }
@@ -11,8 +11,8 @@ class Utils {
     return inputData;
   };
 
-  static getDataRows = async inputdata => {
-    return inputdata.split('\n');
+  static getDataRows = async (inputdata) => {
+    return inputdata.split("\n");
   };
 
   static compareNumbersAsc = (a, b) => {
@@ -35,7 +35,7 @@ class Utils {
     return rangeArray;
   };
 
-  static initMap = (min, max, defaultVal = '.') => {
+  static initMap = (min, max, defaultVal = ".") => {
     const myMap = [];
     for (let y = min.y; y <= max.y; y++) {
       myMap[y] = [];
@@ -47,20 +47,24 @@ class Utils {
     return myMap;
   };
 
-  static printMapOnFile = (myMap, filename = 'map.txt') => {
+  static printMapOnFile = (myMap, filename = "map.txt") => {
     fsp.writeFile(
       filename,
       myMap
         .map(function (v) {
-          return v.join(' ');
+          return v.join(" ");
         })
-        .join('\n'),
-      { flag: 'w' }
+        .join("\n"),
+      { flag: "w" }
     );
   };
 
-  static deepCopyObj = obj => {
+  static deepCopyObj = (obj) => {
     return JSON.parse(JSON.stringify(obj));
+  };
+
+  static printComplexObject = (obj) => {
+    console.dir(obj, { depth: null });
   };
 }
 
